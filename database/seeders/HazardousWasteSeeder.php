@@ -9,6 +9,6 @@ class HazardousWasteSeeder extends Seeder
 {
     public function run(): void
     {
-        HazardousWastes::factory()->count(50)->create();
+        HazardousWastes::factory()->count(200)->create();
     }
 }

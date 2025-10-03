@@ -9,6 +9,6 @@ class WasteEntrieSeeder extends Seeder
 {
     public function run(): void
     {
-        WasteEntrie::factory()->count(50)->create();
+        WasteEntrie::factory()->count(200)->create();
     }
 }
