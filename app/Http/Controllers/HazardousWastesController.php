@@ -8,58 +8,94 @@ use Illuminate\Http\Request;
 class HazardousWastesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Mostrar lista de residuos peligrosos
      */
     public function index()
     {
-        //
+        $HazardousWastes = HazardousWastes::latest()->paginate(10);
+        return view('container.wastes.hazardous-wastes.index', compact('HazardousWastes'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Mostrar formulario para crear un nuevo residuo peligroso
      */
     public function create()
     {
-        //
+        return view('container.wastes.hazardous-wastes.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guardar un nuevo residuo peligroso en la base de datos
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'date' => 'required|date',
+            'generating_unit' => 'nullable|string|max:255',
+            'waste_name' => 'nullable|string|max:255',
+            'hazard_characteristic' => 'nullable|string|max:255',
+            'frequency' => 'nullable|string|max:100',
+            'physical_state' => 'nullable|string|max:50',
+            'quantity' => 'nullable|numeric',
+            'unit' => 'nullable|string|max:50',
+            'delivered_by' => 'nullable|string|max:255',
+            'registered_by' => 'nullable|string|max:255',
+        ]);
+
+        HazardousWastes::create($validated);
+
+        return redirect()->route('HazardousWaste.index')
+            ->with('success', 'Residuo peligroso registrado correctamente.');
     }
 
     /**
-     * Display the specified resource.
+     * Mostrar formulario para editar un residuo peligroso existente
      */
-    public function show(HazardousWastes $hazardousWastes)
+    public function edit(HazardousWastes $HazardousWaste)
     {
-        //
+        return view('container.wastes.hazardous-wastes.edit', compact('HazardousWaste'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Actualizar un residuo peligroso existente
      */
-    public function edit(HazardousWastes $hazardousWastes)
+    public function update(Request $request, HazardousWastes $HazardousWaste)
     {
-        //
+        $validated = $request->validate([
+            'date' => 'required|date',
+            'generating_unit' => 'nullable|string|max:255',
+            'waste_name' => 'nullable|string|max:255',
+            'hazard_characteristic' => 'nullable|string|max:255',
+            'frequency' => 'nullable|string|max:100',
+            'physical_state' => 'nullable|string|max:50',
+            'quantity' => 'nullable|numeric',
+            'unit' => 'nullable|string|max:50',
+            'delivered_by' => 'nullable|string|max:255',
+            'registered_by' => 'nullable|string|max:255',
+        ]);
+
+        $HazardousWaste->update($validated);
+
+        return redirect()->route('HazardousWaste.index')
+            ->with('success', 'Residuo peligroso actualizado correctamente.');
     }
 
     /**
-     * Update the specified resource in storage.
+     * Eliminar un residuo peligroso
      */
-    public function update(Request $request, HazardousWastes $hazardousWastes)
+    public function destroy(HazardousWastes $HazardousWaste)
     {
-        //
+        $HazardousWaste->delete();
+
+        return redirect()->route('HazardousWaste.index')
+            ->with('success', 'Residuo peligroso eliminado correctamente.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Mostrar detalles de un residuo peligroso (opcional)
      */
-    public function destroy(HazardousWastes $hazardousWastes)
+    public function show(HazardousWastes $HazardousWaste)
     {
-        //
+        return view('container.wastes.hazardous-wastes.show', compact('HazardousWaste'));
     }
 }

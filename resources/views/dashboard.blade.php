@@ -124,7 +124,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#"
+                            <a href="{{ route('WasteEntrie.index') }}"
                                 class="menu-item flex items-center space-x-3 px-3 py-2.5 rounded-lg text-text-secondary hover:bg-gray-50 hover:border-l-4 hover:border-primary hover:text-text-primary transition-all duration-200 group border-l-4 border-transparent">
                                 <svg class="w-5 h-5 text-gray-500 group-hover:text-primary transition-colors"
                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -146,7 +146,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#"
+                            <a href="{{ route('HazardousWaste.index') }}"
                                 class="menu-item flex items-center space-x-3 px-3 py-2.5 rounded-lg text-text-secondary hover:bg-gray-50 hover:border-l-4 hover:border-primary hover:text-text-primary transition-all duration-200 group border-l-4 border-transparent">
                                 <svg class="w-5 h-5 text-gray-500 group-hover:text-primary transition-colors"
                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -164,7 +164,7 @@
                     <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3 px-3">Reportes</h3>
                     <ul class="space-y-1">
                         <li>
-                            <a href="#"
+                            <a href="{{ route('report.index') }}"
                                 class="menu-item flex items-center space-x-3 px-3 py-2.5 rounded-lg text-text-secondary hover:bg-gray-50 hover:border-l-4 hover:border-primary hover:text-text-primary transition-all duration-200 group border-l-4 border-transparent">
                                 <svg class="w-5 h-5 text-gray-500 group-hover:text-primary transition-colors"
                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">

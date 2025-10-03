@@ -6,6 +6,8 @@ use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\TwoFactor;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
+use App\Http\Controllers\WasteEntrieController;
+use App\Http\Controllers\HazardousWastesController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,6 +34,15 @@ Route::middleware(['auth'])->group(function () {
             ),
         )
         ->name('two-factor.show');
+
+    // Rutas CRUD para Entradas de Residuos
+    Route::resource('WasteEntrie', WasteEntrieController::class);
+
+    // Rutas CRUD para Residuos Peligrosos
+    Route::resource('HazardousWaste', HazardousWastesController::class);
+
+    Route::get('/report', [App\Http\Controllers\ReportController::class, 'index'])->name('report.index');
+
 });
 
 require __DIR__.'/auth.php';
