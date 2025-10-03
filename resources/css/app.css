@@ -1,66 +1,240 @@
 @import 'tailwindcss';
-@import '../../vendor/livewire/flux/dist/flux.css';
 
-@source '../views';
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
-@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
 
-@custom-variant dark (&:where(.dark, .dark *));
-
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-
-    --color-zinc-50: #fafafa;
-    --color-zinc-100: #f5f5f5;
-    --color-zinc-200: #e5e5e5;
-    --color-zinc-300: #d4d4d4;
-    --color-zinc-400: #a3a3a3;
-    --color-zinc-500: #737373;
-    --color-zinc-600: #525252;
-    --color-zinc-700: #404040;
-    --color-zinc-800: #262626;
-    --color-zinc-900: #171717;
-    --color-zinc-950: #0a0a0a;
-
-    --color-accent: var(--color-neutral-800);
-    --color-accent-content: var(--color-neutral-800);
-    --color-accent-foreground: var(--color-white);
-}
-
-@layer theme {
-    .dark {
-        --color-accent: var(--color-white);
-        --color-accent-content: var(--color-white);
-        --color-accent-foreground: var(--color-neutral-800);
-    }
-}
+/* ============================================
+   SISTEMA DE DISEÑO ESTANDARIZADO
+   Sistema de Clasificación de Residuos Sólidos - SENA
+   ============================================ */
 
 @layer base {
+    :root {
+        /* Colores Primarios - Sostenibilidad y Profesionalismo */
+        --color-primary: 34 197 94;
+        /* green-500 */
+        --color-primary-dark: 22 163 74;
+        /* green-600 */
+        --color-primary-light: 134 239 172;
+        /* green-300 */
 
-    *,
-    ::after,
-    ::before,
-    ::backdrop,
-    ::file-selector-button {
-        border-color: var(--color-gray-200, currentColor);
+        /* Colores Secundarios - Confianza y Tecnología */
+        --color-secondary: 59 130 246;
+        /* blue-500 */
+        --color-secondary-dark: 37 99 235;
+        /* blue-600 */
+        --color-secondary-light: 147 197 253;
+        /* blue-300 */
+
+        /* Colores de Acento - SENA */
+        --color-accent: 249 115 22;
+        /* orange-500 */
+        --color-accent-dark: 234 88 12;
+        /* orange-600 */
+
+        /* Colores Neutros */
+        --color-background: 255 255 255;
+        --color-surface: 249 250 251;
+        /* gray-50 */
+        --color-border: 229 231 235;
+        /* gray-200 */
+
+        /* Textos */
+        --color-text-primary: 17 24 39;
+        /* gray-900 */
+        --color-text-secondary: 75 85 99;
+        /* gray-600 */
+        --color-text-muted: 156 163 175;
+        /* gray-400 */
+
+        /* Sombras */
+        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    }
+
+   
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-bold leading-tight;
+    }
+
+    h1 {
+        @apply text-4xl md:text-5xl lg:text-6xl;
+    }
+
+    h2 {
+        @apply text-3xl md:text-4xl lg:text-5xl;
+    }
+
+    h3 {
+        @apply text-2xl md:text-3xl;
+    }
+
+    h4 {
+        @apply text-xl md:text-2xl;
+    }
+
+    p {
+        @apply leading-relaxed;
     }
 }
 
-[data-flux-field]:not(ui-radio, ui-checkbox) {
-    @apply grid gap-2;
+@layer components {
+
+    /* Botones Estandarizados */
+    .btn {
+        @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    }
+
+    /* Cards Estandarizadas */
+    .card {
+        @apply bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden;
+    }
+
+    .card-body {
+        @apply p-6;
+    }
+
+    /* Badges */
+    .badge {
+        @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+    }
+
+    .badge-success {
+        @apply bg-green-100 text-green-800;
+    }
+
+    .badge-info {
+        @apply bg-blue-100 text-blue-800;
+    }
+
+    .badge-warning {
+        @apply bg-orange-100 text-orange-800;
+    }
+
+    /* Contenedor Principal */
+    .container-custom {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+
+    /* Sección */
+    .section {
+        @apply py-16 md:py-24;
+    }
+
+    /* Gradientes Personalizados */
+    .gradient-primary {
+        background: linear-gradient(135deg, rgb(var(--color-primary)) 0%, rgb(var(--color-primary-dark)) 100%);
+    }
+
+    .gradient-secondary {
+        background: linear-gradient(135deg, rgb(var(--color-secondary)) 0%, rgb(var(--color-secondary-dark)) 100%);
+    }
+
+    .gradient-hero {
+        background: linear-gradient(135deg, rgb(var(--color-primary)) 0%, rgb(var(--color-secondary)) 100%);
+    }
+
+    /* Added navbar scroll effect styles */
+    .navbar-scroll {
+        @apply transition-all duration-300;
+    }
+
+    .navbar-scroll.scrolled {
+        @apply bg-white shadow-md;
+    }
 }
 
-[data-flux-label] {
-    @apply  !mb-0 !leading-tight;
+@layer utilities {
+
+    /* Colores Personalizados */
+    .text-primary {
+        color: rgb(var(--color-primary));
+    }
+
+    .text-secondary {
+        color: rgb(var(--color-secondary));
+    }
+
+    .text-accent {
+        color: rgb(var(--color-accent));
+    }
+
+    .bg-primary {
+        background-color: rgb(var(--color-primary));
+    }
+
+    .bg-primary-dark {
+        background-color: rgb(var(--color-primary-dark));
+    }
+
+    .bg-secondary {
+        background-color: rgb(var(--color-secondary));
+    }
+
+    .bg-secondary-dark {
+        background-color: rgb(var(--color-secondary-dark));
+    }
+
+    .bg-surface {
+        background-color: rgb(var(--color-surface));
+    }
+
+
+    .text-text-primary {
+        color: rgb(var(--color-text-primary));
+    }
+
+    .text-text-secondary {
+        color: rgb(var(--color-text-secondary));
+    }
+
+    .text-text-muted {
+        color: rgb(var(--color-text-muted));
+    }
+
+    /* Animaciones Personalizadas */
+    .animate-fade-in {
+        animation: fadeIn 0.6s ease-in;
+    }
+
+    .animate-slide-up {
+        animation: slideUp 0.6s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(30px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
 }
 
-input:focus[data-flux-control],
-textarea:focus[data-flux-control],
-select:focus[data-flux-control] {
-    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+/* Estilos para AOS */
+[data-aos] {
+    pointer-events: auto;
 }
 
-/* \[:where(&)\]:size-4 {
-    @apply size-4;
-} */
+.aos-init[data-aos][data-aos].aos-animate {
+    pointer-events: auto;
+}
